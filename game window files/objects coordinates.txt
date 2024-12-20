@@ -1,3 +1,4 @@
+game_window_size;0,0;800,900
 simulator_1;50,50;250,250
 simulator_2;300,50;500,250
 simulator_3;550,50;750,250
