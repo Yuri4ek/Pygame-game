@@ -9,7 +9,7 @@ size = width, height = list(map(int, data[0][2].split(",")))
 # инициализация окна
 pygame.init()
 window = pygame.display.set_mode(size)
-pygame.display.set_caption("Главное окно")
+pygame.display.set_caption("Pump It Up💪💪💪")
 
 # добавление фона
 background_image = pygame.image.load('window.png')
