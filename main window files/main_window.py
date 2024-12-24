@@ -12,7 +12,7 @@ window = pygame.display.set_mode(size)
 pygame.display.set_caption("Главное окно")
 
 # добавление фона
-background_image = pygame.image.load('main_window.png')
+background_image = pygame.image.load('window.png')
 window.blit(background_image, (0, 0))
 pygame.display.flip()
 
