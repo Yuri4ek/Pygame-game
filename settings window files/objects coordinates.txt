@@ -1,2 +1,2 @@
 settings_window_size;0,0;800,600
-creators_txt;10,400;790,590
+creators_txt;10,400,790,590
