@@ -1,9 +1,9 @@
 game_window_size;0,0;800,780
-simulator_hands;50,50;250,250
-simulator_legs;300,50;500,250
-simulator_press;550,50;750,250
-dividing_line;0,600;800,600
-player_profile;50,650;250,850
-player_inventory;350,650;750,850
-player_body;50,300;250,360
-player_head;115,285;185,375
+simulator_hands;50,50,250,250
+simulator_legs;300,50,500,250
+simulator_press;550,50,750,250
+dividing_line;0,600,800,600
+player_profile;50,650,250,850
+player_inventory;350,650,750,850
+player_body;50,300,250,360
+player_head;115,285,185,375
