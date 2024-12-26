@@ -1,0 +1,2 @@
+running_equipment_window_size;0,0;750,500
+down_line;10,460,740,440
