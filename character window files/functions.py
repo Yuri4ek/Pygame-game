@@ -2,10 +2,10 @@ import os
 import pygame
 
 
-def load_image(directory_name, image_name, character_view):
-    x1, y1, x2, y2 = character_view
+def load_image(current_dir, file_path, character_view_coordinates):
+    x1, y1, x2, y2 = character_view_coordinates
 
-    fullname = os.path.join(directory_name, image_name)
+    fullname = os.path.join(current_dir, *file_path)
 
     # если файл не существует, то выходим
     if not os.path.isfile(fullname):
