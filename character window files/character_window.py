@@ -27,9 +27,8 @@ all_sprites = pygame.sprite.Group()
 sprite = pygame.sprite.Sprite()
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = ('..', 'assets', 'images', 'character', 'El_Primo.png')
-sprite.image = load_image(current_dir, file_path,
-                          character_view_coordinates)
+file_path = 'total_character.png'
+sprite.image = load_image(file_path, character_view_coordinates)
 
 sprite.rect = sprite.image.get_rect()
 sprite.rect.x, sprite.rect.y = x1, y1
