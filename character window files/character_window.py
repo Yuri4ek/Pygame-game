@@ -21,7 +21,22 @@ def get_coordinates():
             general_lvl_coordinates, other_lvl_coordinates)
 
 
-def make_character(character_view_coordinates):
+def level_calculating():
+    # берет уровни прогресса персонажа
+    with open("progress.txt", mode="r") as progress_file:
+        specifications = [int(specification.split(":")[1])
+                          for specification in
+                          progress_file.read().split("\n")]
+
+    level_specifications = [specification if specification > 1 else 0
+                            for specification in specifications]
+
+    total_level = 1 + sum(level_specifications)
+
+    return total_level, specifications
+
+
+def display_character(character_view_coordinates):
     x1, y1, x2, y2 = character_view_coordinates
 
     sprite = pygame.sprite.Sprite()
@@ -41,6 +56,41 @@ def make_character(character_view_coordinates):
     all_sprites.add(sprite)
 
 
+def display_character_progress(general_lvl_coordinates, other_lvl_coordinates):
+    total_level, specifications = level_calculating()
+    arm, press, legs = specifications
+
+    if general_lvl_coordinates:
+        x1, y1, x2, y2 = general_lvl_coordinates
+
+        # создание данных для отображения главного уровня персонажа
+        text_size = y2 - y1
+        font = pygame.font.Font(None, text_size)
+        color = pygame.Color(255, 255, 255)
+
+        # вывод уровня персонажа
+        text = font.render(f"Уровень: {total_level}", True, color)
+        window.blit(text, (x1, y1))
+
+    if other_lvl_coordinates:
+        x1, y1, x2, y2 = other_lvl_coordinates
+
+        # создание данных для отображения уровней персонажа
+        text_size = (y2 - y1) // 4
+        font = pygame.font.Font(None, text_size)
+        color = pygame.Color(255, 255, 255)
+
+        texts = [f"Прокачка",
+                 f"рук – {arm}",
+                 f"пресса – {press}",
+                 f"ног – {legs}"]
+
+        # вывод уровней персонажа
+        for i in range(len(texts)):
+            text = font.render(texts[i], True, color)
+            window.blit(text, (x1, y1 + i * text_size))
+
+
 size, character_view_coordinates, \
     general_lvl_coordinates, other_lvl_coordinates = get_coordinates()
 
@@ -56,8 +106,11 @@ if __name__ == '__main__':
 
     # вывод персонажа
     all_sprites = pygame.sprite.Group()
-    make_character(character_view_coordinates)
+    display_character(character_view_coordinates)
     all_sprites.draw(window)
+
+    # вывод уровней персонажа
+    display_character_progress(general_lvl_coordinates, other_lvl_coordinates)
 
     # обновление окна
     pygame.display.flip()
