@@ -1,6 +1,7 @@
 import pygame
 from functions import load_image
 import os
+import subprocess
 
 # взятие данных обьектов
 with open("objects coordinates.txt", mode="r") as file:
@@ -21,15 +22,18 @@ pygame.display.set_caption("Pump It Up💪💪💪")
 background_image = pygame.image.load('window.png')
 window.blit(background_image, (0, 0))
 
-# добавление персонажа
 all_sprites = pygame.sprite.Group()
-
 sprite = pygame.sprite.Sprite()
 
+# обновление картинки персонажа
+subprocess.run(["python", "make total character.py"])
+
+# загрузка картинки персонажа
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = 'total_character.png'
 sprite.image = load_image(file_path, character_view_coordinates)
 
+# помещение персонажа в прямоугольник
 sprite.rect = sprite.image.get_rect()
 sprite.rect.x, sprite.rect.y = x1, y1
 
