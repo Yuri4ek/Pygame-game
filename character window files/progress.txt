@@ -1,0 +1,3 @@
+arm:1
+press:1
+legs:1
