@@ -2,7 +2,9 @@ import os
 import pygame
 
 
-def load_image(current_dir, file_path):
+def load_image(current_dir, file_path, character_spawn_coordinates):
+    x1, y1, x2, y2 = character_spawn_coordinates
+
     fullname = os.path.join(current_dir, *file_path)
 
     # если файл не существует, то выходим
@@ -16,4 +18,4 @@ def load_image(current_dir, file_path):
     colorkey = image.get_at((0, 0))
     image.set_colorkey(colorkey)
 
-    return pygame.transform.scale(image, (300, 400))
+    return pygame.transform.scale(image, (x2 - x1, y2 - y1))
