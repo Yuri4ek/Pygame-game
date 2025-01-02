@@ -1,8 +1,6 @@
-import pygame
 from functions import *
-import os
-import subprocess
 
+# координаты окна и его объектов
 size, character_view_coordinates, \
     general_lvl_coordinates, other_lvl_coordinates = get_coordinates()
 
