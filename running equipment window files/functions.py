@@ -3,7 +3,12 @@ import pygame
 
 
 def load_image(current_dir, file_path, character_spawn_coordinates):
+    '''
+        Создание pygame картинки
+    '''
+
     x1, y1, x2, y2 = character_spawn_coordinates
+    size = widht, height = (x2 - x1, y2 - y1)
 
     fullname = os.path.join(current_dir, *file_path)
 
@@ -18,4 +23,25 @@ def load_image(current_dir, file_path, character_spawn_coordinates):
     colorkey = image.get_at((0, 0))
     image.set_colorkey(colorkey)
 
-    return pygame.transform.scale(image, (x2 - x1, y2 - y1))
+    return pygame.transform.scale(image, size)
+
+
+def get_coordinates():
+    '''
+        Возвращает координаты окна и его обьектов
+    '''
+
+    # взятие данных обьектов
+    with open("objects coordinates.txt", mode="r") as file:
+        data = [l.split(";") for l in file.read().split("\n")]
+
+    # размер окна
+    size = width, height = list(map(int, data[0][2].split(",")))
+
+    # координаты обьектов окна
+    character_spawn_coordinates = list(map(int, data[1][1].split(",")))
+    left_block_coordinates = list(map(int, data[2][1].split(",")))
+    down_block_coordinates = list(map(int, data[3][1].split(",")))
+
+    return (size, character_spawn_coordinates,
+            left_block_coordinates, down_block_coordinates)
