@@ -24,7 +24,10 @@ if __name__ == '__main__':
 
     # добавление времени
     clock = pygame.time.Clock()
-    fps = 10
+    fps = 30
+    one_second = 1
+    time_in_seconds = 0
+    level_up_time = 10
 
     # запуск игры
     track_speed = 82
@@ -39,6 +42,12 @@ if __name__ == '__main__':
             if pygame.key.get_pressed():
                 # движение персонажа
                 character_run = True
+
+                time_in_seconds += one_second / fps
+                if time_in_seconds >= level_up_time:
+                    # изменение прогресса ног
+                    write_progress(get_progress(), legs_flag=True)
+                    time_in_seconds = 0
 
         # обновление игры
         window.blit(background_image, (0, 0))
