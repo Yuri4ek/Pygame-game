@@ -24,20 +24,27 @@ if __name__ == '__main__':
 
     # добавление времени
     clock = pygame.time.Clock()
-    fps = 30
+    fps = 10
 
     # запуск игры
     track_speed = 82
     running = True
+    character_run = False
     while running:
+        character_run = False
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if pygame.key.get_pressed():
+                # движение персонажа
+                character_run = True
 
-        # движение персонажа
+        # обновление игры
         window.blit(background_image, (0, 0))
-        all_sprites.update(window_size, fps, track_speed)
+        all_sprites.update(window_size, fps, track_speed, character_run)
         all_sprites.draw(window)
+
         clock.tick(fps)
         pygame.display.flip()
 

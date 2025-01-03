@@ -25,9 +25,12 @@ class RunningCharacter(pygame.sprite.Sprite):
         self.rect.x = self.x1
         self.rect.y = self.y1
 
-    def update(self, window_size, fps, track_speed):
+    def update(self, window_size, fps, track_speed, character_run):
         x2 = self.rect.x + self.widht
 
         if x2 <= window_size[0]:
             # движение из-за беговой дорожки
             self.rect = self.rect.move(track_speed // fps, 0)
+        if character_run and self.rect.x >= self.x1:
+            # движение персонажа
+            self.rect = self.rect.move(-(self.speed // fps), 0)
