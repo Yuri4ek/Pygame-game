@@ -2,13 +2,10 @@ import os
 import pygame
 
 
-def load_image(current_dir, file_path, character_spawn_coordinates):
+def load_image(current_dir, file_path):
     '''
         Создание pygame картинки
     '''
-
-    x1, y1, x2, y2 = character_spawn_coordinates
-    size = widht, height = (x2 - x1, y2 - y1)
 
     fullname = os.path.join(current_dir, *file_path)
 
@@ -23,7 +20,7 @@ def load_image(current_dir, file_path, character_spawn_coordinates):
     colorkey = image.get_at((0, 0))
     image.set_colorkey(colorkey)
 
-    return pygame.transform.scale(image, size)
+    return image
 
 
 def get_coordinates():
