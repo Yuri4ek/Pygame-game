@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     # добавление времени
     clock = pygame.time.Clock()
-    fps = 30
+    fps = 5
     one_second = 1
     time_in_seconds = 0
     level_up_time = 10
