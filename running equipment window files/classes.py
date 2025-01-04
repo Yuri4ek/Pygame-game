@@ -21,9 +21,11 @@ class RunningCharacter(pygame.sprite.Sprite):
         # местоположение
         self.make_rect()
 
-    def update(self, window_size, fps, track_speed, character_run):
+    def update(self, window_size, fps, track_speed,
+               character_run, character_stand):
         # меняем изображение
-        self.image_name = 'Running_El_Primo2.png' \
+        self.image_name = 'Standing_El_Primo.png' if character_stand \
+            else 'Running_El_Primo2.png' \
             if self.image_name == 'Running_El_Primo.png' and character_run \
             else 'Running_El_Primo.png'
         self.make_image(self.image_name)
