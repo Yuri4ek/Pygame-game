@@ -8,7 +8,7 @@ class RunningCharacter(pygame.sprite.Sprite):
         super().__init__(group)
 
         # характеристики
-        self.speed = 100
+        self.speed = 164
         self.x1, self.y1, self.x2, self.y2 = character_spawn_coordinates
         self.size = self.widht, self.height = (self.x2 - self.x1,
                                                self.y2 - self.y1)

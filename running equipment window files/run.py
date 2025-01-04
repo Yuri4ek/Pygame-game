@@ -1,9 +1,13 @@
 from functions import *
 from classes import RunningCharacter
 
+character_size = (300, 400)
+
 # взятие данных обьектов
-window_size, character_spawn_coordinates, \
-    left_block_coordinates, down_block_coordinates = get_coordinates()
+window_size, left_block_coordinates, down_block_coordinates = get_coordinates()
+character_spawn_coordinates = make_character_spawn_(character_size,
+                                                    left_block_coordinates,
+                                                    down_block_coordinates)
 
 if __name__ == '__main__':
     # инициализация окна

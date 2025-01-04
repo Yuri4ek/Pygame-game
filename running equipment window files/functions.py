@@ -90,9 +90,19 @@ def get_coordinates():
     size = width, height = list(map(int, data[0][2].split(",")))
 
     # координаты обьектов окна
-    character_spawn_coordinates = list(map(int, data[1][1].split(",")))
-    left_block_coordinates = list(map(int, data[2][1].split(",")))
-    down_block_coordinates = list(map(int, data[3][1].split(",")))
+    left_block_coordinates = list(map(int, data[1][1].split(",")))
+    down_block_coordinates = list(map(int, data[2][1].split(",")))
 
-    return (size, character_spawn_coordinates,
-            left_block_coordinates, down_block_coordinates)
+    return (size, left_block_coordinates, down_block_coordinates)
+
+
+def make_character_spawn_(character_size,
+                          left_block_coordinates, down_block_coordinates):
+    w, h = character_size
+
+    x1 = left_block_coordinates[2]
+    y1 = down_block_coordinates[1] - h
+    x2 = x1 + w
+    y2 = y1 + h
+
+    return (x1, y1, x2, y2)
