@@ -92,8 +92,10 @@ def get_coordinates():
     # координаты обьектов окна
     left_block_coordinates = list(map(int, data[1][1].split(",")))
     down_block_coordinates = list(map(int, data[2][1].split(",")))
+    text_coordinates = list(map(int, data[3][1].split(",")))
 
-    return (size, left_block_coordinates, down_block_coordinates)
+    return (size, left_block_coordinates, down_block_coordinates,
+            text_coordinates)
 
 
 def make_character_spawn_(character_size,
@@ -106,3 +108,19 @@ def make_character_spawn_(character_size,
     y2 = y1 + h
 
     return (x1, y1, x2, y2)
+
+
+def text_update(window, text_coordinates, character_level, purpose, score):
+    x1, y1, x2, y2 = text_coordinates
+    text_size = 60
+    font = pygame.font.Font(None, text_size)
+    color = pygame.Color(0, 0, 0)
+
+    level_text = font.render(f"Уровень {character_level}", True, color)
+    window.blit(level_text, (x1, y1))
+
+    purpose_text = font.render(f"Цель {purpose}", True, color)
+    window.blit(purpose_text, (x1, y1 * 2 + text_size))
+
+    score_text = font.render(f"Очки {score}", True, color)
+    window.blit(score_text, (x1, y1 * 3 + text_size * 2))
