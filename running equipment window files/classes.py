@@ -15,7 +15,7 @@ class RunningCharacter(pygame.sprite.Sprite):
 
         # изображение
         self.current_dir = os.path.dirname(os.path.abspath(__file__))
-        self.image_name = 'Running_El_Primo.png'
+        self.image_name = 'Standing_El_Primo.png'
         self.make_image(self.image_name)
 
         # местоположение
