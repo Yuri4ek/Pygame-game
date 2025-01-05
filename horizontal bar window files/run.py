@@ -1,4 +1,3 @@
-import pygame
 from functions import *
 
 character_size = (300, 400)
@@ -19,6 +18,9 @@ if __name__ == '__main__':
 
     # добавление персонажа
     pass
+
+    # добавление текста
+    text_update(window, text_coordinates, get_progress()[0], 0, 0)
 
     pygame.display.flip()
 
