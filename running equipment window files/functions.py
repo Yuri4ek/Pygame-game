@@ -98,7 +98,7 @@ def get_coordinates():
             text_coordinates)
 
 
-def make_character_spawn_(character_size,
+def make_character_spawn(character_size,
                           left_block_coordinates, down_block_coordinates):
     w, h = character_size
 

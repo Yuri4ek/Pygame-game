@@ -34,7 +34,7 @@ class RunningCharacter(pygame.sprite.Sprite):
         self.move(window_size, fps, track_speed, character_run)
 
     def make_image(self, image_name):
-        file_path = ('..', 'assets', 'images', 'character', image_name)
+        file_path = ('..', 'assets', 'images', 'character', 'run', image_name)
         image = load_image(self.current_dir, file_path)
         self.image = pygame.transform.scale(image, self.size)
 
