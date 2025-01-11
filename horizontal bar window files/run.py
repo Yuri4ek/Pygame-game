@@ -1,10 +1,11 @@
 from functions import *
 
-character_size = (300, 400)
+character_size = (300, 450)
 
 # взятие данных обьектов
-window_size, text_coordinates, upper_kernel_coordinates, \
-    left_kernel_coordinates, right_kernel_coordinates = get_coordinates()
+window_size, text_coordinates, character_coordinates, \
+    upper_kernel_coordinates, left_kernel_coordinates, \
+    right_kernel_coordinates = get_coordinates()
 
 if __name__ == '__main__':
     # инициализация окна

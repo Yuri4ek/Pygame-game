@@ -1,5 +1,6 @@
 horizontal_bar_window;0,0;600,800
 text;10,10,590,130
+character;150,140,450,590
 upper_kernel;50,150,550,180
 left_kernel;50,150,90,800
 right_kernel;510,150,550,800
