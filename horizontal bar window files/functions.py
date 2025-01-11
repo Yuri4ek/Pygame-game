@@ -96,8 +96,9 @@ def get_coordinates():
     left_kernel_coordinates = list(map(int, data[4][1].split(",")))
     right_kernel_coordinates = list(map(int, data[5][1].split(",")))
 
-    return (size, text_coordinates, upper_kernel_coordinates,
-            left_kernel_coordinates, right_kernel_coordinates)
+    return (size, text_coordinates, character_coordinates,
+            upper_kernel_coordinates, left_kernel_coordinates,
+            right_kernel_coordinates)
 
 
 def text_update(window, text_coordinates, character_level, purpose, score):
