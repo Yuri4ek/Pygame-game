@@ -91,7 +91,7 @@ def get_coordinates():
 
     # координаты обьектов окна
     text_coordinates = list(map(int, data[1][1].split(",")))
-    character_coordinates = list(map(int, data[1][1].split(",")))
+    character_coordinates = list(map(int, data[2][1].split(",")))
     upper_kernel_coordinates = list(map(int, data[3][1].split(",")))
     left_kernel_coordinates = list(map(int, data[4][1].split(",")))
     right_kernel_coordinates = list(map(int, data[5][1].split(",")))

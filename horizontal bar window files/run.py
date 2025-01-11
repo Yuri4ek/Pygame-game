@@ -1,4 +1,5 @@
 from functions import *
+from classes import PullingCharacter
 
 character_size = (300, 450)
 
@@ -18,12 +19,18 @@ if __name__ == '__main__':
     window.blit(background_image, (0, 0))
 
     # добавление персонажа
-    pass
+    all_sprites = pygame.sprite.Group()
+    PullingCharacter(all_sprites, character_coordinates)
+    all_sprites.draw(window)
 
     # добавление текста
     text_update(window, text_coordinates, get_progress()[0], 0, 0)
 
     pygame.display.flip()
+
+    # добавление времени
+    clock = pygame.time.Clock()
+    fps = 3
 
     # запуск игры
     running = True
@@ -31,5 +38,14 @@ if __name__ == '__main__':
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+
+        # обновление игры
+        window.blit(background_image, (0, 0))
+        all_sprites.update()
+        text_update(window, text_coordinates, get_progress()[0], 0, 0)
+        all_sprites.draw(window)
+
+        clock.tick(fps)
+        pygame.display.flip()
 
     pygame.quit()
