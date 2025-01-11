@@ -32,6 +32,14 @@ if __name__ == '__main__':
     clock = pygame.time.Clock()
     fps = 3
 
+    # атрибуты игры для прокачки персонажа
+    score = 0
+    level_up_times = [10, 30, 1000]
+    i = int(get_progress()[2]) - 1
+    level_up_time = level_up_times[i]
+    count = 0
+    down_flag = False
+
     # запуск игры
     running = True
     while running:
@@ -39,10 +47,25 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 running = False
 
+            if event.type == pygame.MOUSEBUTTONUP and not down_flag:
+                count += 1
+                if count == 3:
+                    score += 1
+                if score >= level_up_time:
+                    write_progress(get_progress(), arm_flag=True)
+                    level_up_time = level_up_times[i := 1]
+
+        # для опускания персонажа
+        if count > 2 or down_flag:
+            down_flag = True
+            count -= 1
+        if count == 0:
+            down_flag = False
+
         # обновление игры
         window.blit(background_image, (0, 0))
         all_sprites.update()
-        text_update(window, text_coordinates, get_progress()[0], 0, 0)
+        text_update(window, text_coordinates, get_progress()[0], level_up_time, score)
         all_sprites.draw(window)
 
         clock.tick(fps)
