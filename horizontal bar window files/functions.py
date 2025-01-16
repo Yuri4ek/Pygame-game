@@ -1,5 +1,5 @@
-import os
 import pygame
+import os
 
 
 def get_progress():
@@ -90,24 +90,15 @@ def get_coordinates():
     size = width, height = list(map(int, data[0][2].split(",")))
 
     # координаты обьектов окна
-    left_block_coordinates = list(map(int, data[1][1].split(",")))
-    down_block_coordinates = list(map(int, data[2][1].split(",")))
-    text_coordinates = list(map(int, data[3][1].split(",")))
+    text_coordinates = list(map(int, data[1][1].split(",")))
+    character_coordinates = list(map(int, data[2][1].split(",")))
+    upper_kernel_coordinates = list(map(int, data[3][1].split(",")))
+    left_kernel_coordinates = list(map(int, data[4][1].split(",")))
+    right_kernel_coordinates = list(map(int, data[5][1].split(",")))
 
-    return (size, left_block_coordinates, down_block_coordinates,
-            text_coordinates)
-
-
-def make_character_spawn(character_size,
-                          left_block_coordinates, down_block_coordinates):
-    w, h = character_size
-
-    x1 = left_block_coordinates[2]
-    y1 = down_block_coordinates[1] - h
-    x2 = x1 + w
-    y2 = y1 + h
-
-    return (x1, y1, x2, y2)
+    return (size, text_coordinates, character_coordinates,
+            upper_kernel_coordinates, left_kernel_coordinates,
+            right_kernel_coordinates)
 
 
 def text_update(window, text_coordinates, character_level, purpose, score):
@@ -120,7 +111,7 @@ def text_update(window, text_coordinates, character_level, purpose, score):
     window.blit(level_text, (x1, y1))
 
     purpose_text = font.render(f"Цель {purpose}", True, color)
-    window.blit(purpose_text, (x1, y1 * 2 + text_size))
+    window.blit(purpose_text, (x1 * 2 + text_size * 4, y1))
 
     score_text = font.render(f"Очки {score}", True, color)
-    window.blit(score_text, (x1, y1 * 3 + text_size * 2))
+    window.blit(score_text, (x1 * 2 + text_size * 4, y1 * 2 + text_size))
