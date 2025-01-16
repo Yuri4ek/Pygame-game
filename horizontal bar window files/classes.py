@@ -14,7 +14,7 @@ class PullingCharacter(pygame.sprite.Sprite):
 
         # изображение
         self.current_dir = os.path.dirname(os.path.abspath(__file__))
-        self.image_name = 'test.png'
+        self.image_name = 'Pulling_El_Primo.png'
         self.make_image(self.image_name)
 
         # местоположение
@@ -22,12 +22,13 @@ class PullingCharacter(pygame.sprite.Sprite):
 
     def update(self, count):
         # меняем изображение (имитируем подтягивание)
-        self.image_name = 'test3.png' if count == 3 else \
-            'test2.png' if count == 2 else 'test.png'
+        self.image_name = 'Pulling_El_Primo3.png' if count == 3 else \
+            'Pulling_El_Primo2.png' if count == 2 else 'Pulling_El_Primo.png'
         self.make_image(self.image_name)
 
     def make_image(self, image_name):
-        file_path = ('..', 'assets', 'images', 'character', image_name)
+        file_path = ('..', 'assets', 'images', 'character', 'pull_up',
+                     image_name)
         image = load_image(self.current_dir, file_path)
         self.image = pygame.transform.scale(image, self.size)
 
