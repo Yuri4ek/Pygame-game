@@ -1,4 +1,17 @@
 import pygame
+import os
+
+
+def get_path(name):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = ['..', 'mainWindowFiles', name]
+    file_name = os.path.join(current_dir, *file_path)
+
+    # если файл не существует, то выходим
+    if not os.path.isfile(file_name):
+        return None
+
+    return file_name
 
 
 def get_coordinates():
@@ -7,7 +20,7 @@ def get_coordinates():
     '''
 
     # взятие данных обьектов
-    with open("objects coordinates.txt", mode="r") as file:
+    with open(get_path("objects coordinates.txt"), mode="r") as file:
         data = [l.split(";") for l in file.read().split("\n")]
 
     # размер окна
@@ -37,13 +50,17 @@ def settings_btn(mouse_coordinates, btn_coordinates):
     b_x1, b_y1, b_x2, b_y2 = btn_coordinates
     return b_x1 <= m_x <= b_x2 and b_y1 <= m_y <= b_y2
 
-def run_window(window, start_game_btn_coordinates, settings_btn_coordinates):
+
+def run_window(window_size, start_game_btn_coordinates,
+               settings_btn_coordinates):
+    window = pygame.display.set_mode(window_size, pygame.RESIZABLE)
+
     # флаги для запуска других окон
     game_flag = False
     settings_flag = False
 
     # добавление фона
-    background_image = pygame.image.load('window.png')
+    background_image = pygame.image.load(get_path('window.png'))
     window.blit(background_image, (0, 0))
     pygame.display.flip()
 
