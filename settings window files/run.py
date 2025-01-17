@@ -1,26 +1,14 @@
-import pygame
+from functions import *
 
 # взятие данных обьектов
-with open("objects coordinates.txt", mode="r") as file:
-    data = [l.split(";") for l in file.read().split("\n")]
+size, creators_txt_coordinates = get_coordinates()
 
-size = width, height = list(map(int, data[0][2].split(",")))
+if __name__ == '__main__':
+    # инициализация окна
+    pygame.init()
+    window = pygame.display.set_mode(size)
+    pygame.display.set_caption("Pump It Up💪💪💪")
 
-# инициализация окна
-pygame.init()
-window = pygame.display.set_mode(size)
-pygame.display.set_caption("Pump It Up💪💪💪")
+    run_window(window)
 
-# добавление фона
-background_image = pygame.image.load('window.png')
-window.blit(background_image, (0, 0))
-pygame.display.flip()
-
-# запуск окна
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-pygame.quit()
+    pygame.quit()

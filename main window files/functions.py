@@ -1,6 +1,4 @@
 import pygame
-import subprocess
-import os
 
 
 def get_coordinates():
