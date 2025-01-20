@@ -15,7 +15,8 @@ if __name__ == "__main__":
 
     # запуск игры
     if game_flag:
-        gameWindow.run_window(*gameWindow.get_coordinates())
+        hands_flag, legs_flag, press_flag = gameWindow.run_window(
+            *gameWindow.get_coordinates())
     # запуск меню настроек
     if settings_flag:
         settingsWindow.run_window(*settingsWindow.get_coordinates())

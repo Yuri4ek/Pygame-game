@@ -1,4 +1,3 @@
-import pygame
 from functions import *
 
 # надо окно подрезать
@@ -10,6 +9,6 @@ if __name__ == "__main__":
     pygame.init()
     pygame.display.set_caption("Pump It Up💪💪💪")
 
-    run_window(*coordinates)
+    hands_flag, legs_flag, press_flag = run_window(*coordinates)
 
     pygame.quit()
