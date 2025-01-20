@@ -74,8 +74,10 @@ def run_window(window_size, start_game_btn_coordinates,
                 mouse_coordinates = event.pos
                 if game_btn(mouse_coordinates, start_game_btn_coordinates):
                     game_flag = True
+                    running = False
                 elif settings_btn(mouse_coordinates,
                                   settings_btn_coordinates):
                     settings_flag = True
+                    running = False
 
     return game_flag, settings_flag
