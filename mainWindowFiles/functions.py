@@ -15,10 +15,6 @@ def get_path(name):
 
 
 def get_coordinates():
-    '''
-        Возвращает координаты окна и его обьектов
-    '''
-
     # взятие данных обьектов
     with open(get_path("objects coordinates.txt"), mode="r") as file:
         data = [l.split(";") for l in file.read().split("\n")]
@@ -33,19 +29,7 @@ def get_coordinates():
     return (size, start_game_btn_coordinates, settings_btn_coordinates)
 
 
-def game_btn(mouse_coordinates, btn_coordinates):
-    '''
-        Проверка на кнопку игры
-    '''
-    m_x, m_y = mouse_coordinates
-    b_x1, b_y1, b_x2, b_y2 = btn_coordinates
-    return b_x1 <= m_x <= b_x2 and b_y1 <= m_y <= b_y2
-
-
-def settings_btn(mouse_coordinates, btn_coordinates):
-    '''
-        Проверка на кнопку создателей
-    '''
+def btn_click(mouse_coordinates, btn_coordinates):
     m_x, m_y = mouse_coordinates
     b_x1, b_y1, b_x2, b_y2 = btn_coordinates
     return b_x1 <= m_x <= b_x2 and b_y1 <= m_y <= b_y2
@@ -72,10 +56,12 @@ def run_window(window_size, start_game_btn_coordinates,
                 running = False
             if event.type == pygame.MOUSEBUTTONUP:
                 mouse_coordinates = event.pos
-                if game_btn(mouse_coordinates, start_game_btn_coordinates):
+                # нажата ли кнопка игры
+                if btn_click(mouse_coordinates, start_game_btn_coordinates):
                     game_flag = True
                     running = False
-                elif settings_btn(mouse_coordinates,
+                # нажата ли кнопка настроек
+                elif btn_click(mouse_coordinates,
                                   settings_btn_coordinates):
                     settings_flag = True
                     running = False

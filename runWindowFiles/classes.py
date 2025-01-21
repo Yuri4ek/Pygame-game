@@ -1,6 +1,5 @@
 import pygame
 import os
-from functions import load_image
 
 
 class RunningCharacter(pygame.sprite.Sprite):
@@ -52,3 +51,24 @@ class RunningCharacter(pygame.sprite.Sprite):
         if character_run and self.rect.x >= self.x1:
             # движение персонажа
             self.rect = self.rect.move(-(self.speed // fps), 0)
+
+
+def load_image(current_dir, file_path):
+    '''
+        Создание pygame картинки
+    '''
+
+    fullname = os.path.join(current_dir, *file_path)
+
+    # если файл не существует, то выходим
+    if not os.path.isfile(fullname):
+        return None
+
+    # создаем и возвращаем картинку
+    image = pygame.image.load(fullname)
+
+    image = image.convert()
+    colorkey = image.get_at((0, 0))
+    image.set_colorkey(colorkey)
+
+    return image

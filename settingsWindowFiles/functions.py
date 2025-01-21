@@ -12,10 +12,6 @@ def get_path(name):
 
     return file_name
 def get_coordinates():
-    '''
-        Возвращает координаты окна и его обьектов
-    '''
-
     # взятие данных обьектов
     with open(get_path("objects coordinates.txt"), mode="r") as file:
         data = [l.split(";") for l in file.read().split("\n")]

@@ -4,10 +4,6 @@ import subprocess
 
 
 def load_image(file_path, character_view_coordinates):
-    '''
-        Создание pygame картинки
-    '''
-
     x1, y1, x2, y2 = character_view_coordinates
 
     # если файл не существует, то выходим
@@ -25,10 +21,6 @@ def load_image(file_path, character_view_coordinates):
 
 
 def get_coordinates():
-    '''
-        Возвращает координаты окна и его обьектов
-    '''
-
     # взятие данных обьектов
     with open("objects coordinates.txt", mode="r") as file:
         data = [l.split(";") for l in file.read().split("\n")]
@@ -46,10 +38,6 @@ def get_coordinates():
 
 
 def level_calculating():
-    '''
-        Возвращает уровни прокачки персонажа
-    '''
-
     # берет уровни прогресса персонажа
     with open("progress.txt", mode="r") as progress_file:
         specifications = [int(specification.split(":")[1])
@@ -65,10 +53,6 @@ def level_calculating():
 
 
 def display_character(all_sprites, character_view_coordinates):
-    '''
-        Отображение персонажа
-    '''
-
     x1, y1, x2, y2 = character_view_coordinates
 
     sprite = pygame.sprite.Sprite()
@@ -90,10 +74,6 @@ def display_character(all_sprites, character_view_coordinates):
 
 def display_character_progress(window,
                                general_lvl_coordinates, other_lvl_coordinates):
-    '''
-        Отображение прогресса (уровней персонажа)
-    '''
-
     total_level, specifications = level_calculating()
     arm, press, legs = specifications
 

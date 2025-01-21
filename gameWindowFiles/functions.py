@@ -1,6 +1,6 @@
 import pygame
 import os
-from classes import MainCharacter
+from gameWindowFiles.classes import MainCharacter
 
 
 def get_path(name):
@@ -16,10 +16,6 @@ def get_path(name):
 
 
 def get_coordinates():
-    '''
-        Возвращает координаты окна и его обьектов
-    '''
-
     # взятие данных обьектов
     with open(get_path("objects coordinates.txt"), mode="r") as file:
         data = [l.split(";") for l in file.read().split("\n")]
@@ -49,9 +45,7 @@ def check_touch(character_coordinates, object_coordinates):
 
 
 def run_window(size, simulator_hands_coordinates, simulator_legs_coordinates,
-               simulator_press_coordinates, character_spawn_coordinates,
-               dividing_line_coordinates, player_profile_coordinates,
-               player_inventory_coordinates):
+               simulator_press_coordinates, character_spawn_coordinates):
     window = pygame.display.set_mode(size)
 
     # флаги для запуска тренажеров

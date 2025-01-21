@@ -1,14 +1,26 @@
 import pygame
 import os
+from pullUpWindowFiles.classes import PullingCharacter
+
+
+def get_path(name):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = ['..', 'pullUpWindowFiles', name]
+    file_name = os.path.join(current_dir, *file_path)
+
+    # если файл не существует, то выходим
+    if not os.path.isfile(file_name):
+        return None
+
+    return file_name
 
 
 def get_progress():
     '''
         Возвращает прогресс персонажа
     '''
-
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = ['..', 'character window files', 'progress.txt']
+    file_path = ['..', 'characterWindowFiles', 'progress.txt']
     progress_file_name = os.path.join(current_dir, *file_path)
 
     # если файл не существует, то выходим
@@ -30,7 +42,7 @@ def write_progress(specifications,
         Записывает новые значения в progress.txt
     '''
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = ['..', 'character window files', 'progress.txt']
+    file_path = ['..', 'characterWindowFiles', 'progress.txt']
     progress_file_name = os.path.join(current_dir, *file_path)
 
     # если файл не существует, то выходим
@@ -56,34 +68,9 @@ def write_progress(specifications,
         progress_file.write(progress_text)
 
 
-def load_image(current_dir, file_path):
-    '''
-        Создание pygame картинки
-    '''
-
-    fullname = os.path.join(current_dir, *file_path)
-
-    # если файл не существует, то выходим
-    if not os.path.isfile(fullname):
-        return None
-
-    # создаем и возвращаем картинку
-    image = pygame.image.load(fullname)
-
-    image = image.convert()
-    colorkey = image.get_at((0, 0))
-    image.set_colorkey(colorkey)
-
-    return image
-
-
 def get_coordinates():
-    '''
-        Возвращает координаты окна и его обьектов
-    '''
-
     # взятие данных обьектов
-    with open("objects coordinates.txt", mode="r") as file:
+    with open(get_path("objects coordinates.txt"), mode="r") as file:
         data = [l.split(";") for l in file.read().split("\n")]
 
     # размер окна
@@ -115,3 +102,66 @@ def text_update(window, text_coordinates, character_level, purpose, score):
 
     score_text = font.render(f"Очки {score}", True, color)
     window.blit(score_text, (x1 * 2 + text_size * 4, y1 * 2 + text_size))
+
+
+def run_window(window_size, text_coordinates, character_coordinates):
+    window = pygame.display.set_mode(window_size)
+
+    # добавление фона
+    background_image = pygame.image.load(get_path('window.png'))
+    window.blit(background_image, (0, 0))
+
+    # добавление персонажа
+    all_sprites = pygame.sprite.Group()
+    PullingCharacter(all_sprites, character_coordinates)
+    all_sprites.draw(window)
+
+    # добавление текста
+    text_update(window, text_coordinates, get_progress()[0], 0, 0)
+
+    pygame.display.flip()
+
+    # добавление времени
+    clock = pygame.time.Clock()
+    fps = 3
+
+    # атрибуты игры для прокачки персонажа
+    score = 0
+    level_up_times = [10, 30, 1000]
+    i = int(get_progress()[2]) - 1
+    level_up_time = level_up_times[i]
+    count = 1
+    down_flag = False
+
+    # запуск игры
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            if event.type == pygame.MOUSEBUTTONUP and not down_flag:
+                count += 1
+                if count == 3:
+                    score += 1
+                if score >= level_up_time:
+                    write_progress(get_progress(), arm_flag=True)
+                    level_up_time = level_up_times[i := 1]
+
+        # для опускания персонажа
+        if down_flag:
+            count -= 1
+        if count > 2:
+            down_flag = True
+        if count == 0:
+            down_flag = False
+
+        # обновление игры
+        window.blit(background_image, (0, 0))
+        all_sprites.update(count)
+        text_update(window, text_coordinates, get_progress()[0], level_up_time,
+                    score)
+        all_sprites.draw(window)
+
+        clock.tick(fps)
+        pygame.display.flip()
