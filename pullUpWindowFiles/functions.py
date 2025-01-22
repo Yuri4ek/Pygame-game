@@ -98,10 +98,10 @@ def text_update(window, text_coordinates, character_level, purpose, score):
     window.blit(level_text, (x1, y1))
 
     purpose_text = font.render(f"Цель {purpose}", True, color)
-    window.blit(purpose_text, (x1 * 2 + text_size * 4, y1))
+    window.blit(purpose_text, (x1, y1 + 10 + text_size))
 
     score_text = font.render(f"Очки {score}", True, color)
-    window.blit(score_text, (x1 * 2 + text_size * 4, y1 * 2 + text_size))
+    window.blit(score_text, (x1, y1 + 10 * 2 + text_size * 2))
 
 
 def run_window(window_size, text_coordinates, character_coordinates):
