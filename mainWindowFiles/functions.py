@@ -25,8 +25,10 @@ def get_coordinates():
     # координаты обьектов окна
     start_game_btn_coordinates = list(map(int, data[1][1].split(",")))
     settings_btn_coordinates = list(map(int, data[2][1].split(",")))
+    profile_btn_coordinates = list(map(int, data[3][1].split(",")))
 
-    return (size, start_game_btn_coordinates, settings_btn_coordinates)
+    return (size, start_game_btn_coordinates, settings_btn_coordinates,
+            profile_btn_coordinates)
 
 
 def btn_click(mouse_coordinates, btn_coordinates):
@@ -36,12 +38,13 @@ def btn_click(mouse_coordinates, btn_coordinates):
 
 
 def run_window(window_size, start_game_btn_coordinates,
-               settings_btn_coordinates):
+               settings_btn_coordinates, profile_btn_coordinates):
     window = pygame.display.set_mode(window_size, pygame.RESIZABLE)
 
     # флаги для запуска других окон
     game_flag = False
     settings_flag = False
+    profile_flag = False
 
     # добавление фона
     background_image = pygame.image.load(get_path('window.png'))
@@ -65,5 +68,9 @@ def run_window(window_size, start_game_btn_coordinates,
                                   settings_btn_coordinates):
                     settings_flag = True
                     running = False
+                elif btn_click(mouse_coordinates,
+                                  profile_btn_coordinates):
+                    profile_flag = True
+                    running = False
 
-    return game_flag, settings_flag
+    return game_flag, settings_flag, profile_flag

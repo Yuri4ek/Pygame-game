@@ -8,6 +8,6 @@ if __name__ == '__main__':
     pygame.init()
     pygame.display.set_caption("Pump It Up💪💪💪")
 
-    game_flag, settings_flag = run_window(*coordinates)
+    game_flag, settings_flag, profile_flag = run_window(*coordinates)\
 
     pygame.quit()

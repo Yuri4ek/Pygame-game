@@ -1,6 +1,7 @@
 import pygame
 import os
 
+
 def get_path(name):
     current_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = ['..', 'settingsWindowFiles', name]
@@ -11,6 +12,8 @@ def get_path(name):
         return None
 
     return file_name
+
+
 def get_coordinates():
     # взятие данных обьектов
     with open(get_path("objects coordinates.txt"), mode="r") as file:
@@ -20,11 +23,14 @@ def get_coordinates():
     size = width, height = list(map(int, data[0][2].split(",")))
 
     # координаты обьектов окна
-    creators_txt_coordinates = list(map(int, data[1][1].split(",")))
+    first_backgroud_coordinates = list(map(int, data[1][1].split(",")))
+    second_backgroud_coordinates = list(map(int, data[2][1].split(",")))
 
-    return (size, creators_txt_coordinates)
+    return (size, first_backgroud_coordinates, second_backgroud_coordinates)
 
-def run_window(size, creators_txt_coordinates):
+
+def run_window(size, first_backgroud_coordinates,
+               second_backgroud_coordinates):
     window = pygame.display.set_mode(size, pygame.RESIZABLE)
 
     # добавление фона
