@@ -28,14 +28,9 @@ def get_coordinates():
     simulator_legs_coordinates = list(map(int, data[2][1].split(",")))
     simulator_press_coordinates = list(map(int, data[3][1].split(",")))
     character_spawn_coordinates = list(map(int, data[4][1].split(",")))
-    dividing_line_coordinates = list(map(int, data[5][1].split(",")))
-    player_profile_coordinates = list(map(int, data[6][1].split(",")))
-    player_inventory_coordinates = list(map(int, data[7][1].split(",")))
 
     return (size, simulator_hands_coordinates, simulator_legs_coordinates,
-            simulator_press_coordinates, character_spawn_coordinates,
-            dividing_line_coordinates, player_profile_coordinates,
-            player_inventory_coordinates)
+            simulator_press_coordinates, character_spawn_coordinates)
 
 
 def check_touch(character_coordinates, object_coordinates):
@@ -104,6 +99,5 @@ def run_window(size, simulator_hands_coordinates, simulator_legs_coordinates,
             running = False
         elif check_touch(character_coordinates, simulator_press_coordinates):
             press_flag = True
-            running = False
 
     return hands_flag, legs_flag, press_flag

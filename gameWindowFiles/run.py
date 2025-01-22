@@ -9,6 +9,6 @@ if __name__ == "__main__":
     pygame.init()
     pygame.display.set_caption("Pump It Up💪💪💪")
 
-    hands_flag, legs_flag, press_flag = run_window(*coordinates[:5])
+    hands_flag, legs_flag, press_flag = run_window(*coordinates)
 
     pygame.quit()

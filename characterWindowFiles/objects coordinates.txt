@@ -1,4 +1,4 @@
-character_window_size;0,0;750,500
-character_view;50,50,350,450
-general_lvl;400,50,700,100
-other_lvl;400,150,700,450
+character_window_size;0,0;900,900
+character_view;50,200,425,700
+general_lvl;50,50,425,150
+other_lvl;475,100,850,750

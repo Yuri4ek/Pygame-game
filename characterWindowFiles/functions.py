@@ -93,7 +93,7 @@ def display_character_progress(window,
         x1, y1, x2, y2 = other_lvl_coordinates
 
         # создание данных для отображения уровней персонажа
-        text_size = (y2 - y1) // 4
+        text_size = (y2 - y1) // 8
         font = pygame.font.Font(None, text_size)
         color = pygame.Color(255, 255, 255)
 
