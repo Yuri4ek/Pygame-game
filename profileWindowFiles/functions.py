@@ -75,7 +75,8 @@ def display_character(all_sprites, character_view_coordinates):
 
     # загрузка картинки персонажа
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = 'total_character.png'
+    character_path = ["..", "profileWindowFiles", "total_character.png"]
+    file_path = get_path(character_path)
     sprite.image = load_image(file_path, character_view_coordinates)
 
     # помещение персонажа в прямоугольник
