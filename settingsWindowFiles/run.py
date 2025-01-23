@@ -10,6 +10,6 @@ if __name__ == '__main__':
     pygame.init()
     pygame.display.set_caption("Pump It Up💪💪💪")
 
-    run_window(window_style, *coordinates)
+    window_style = run_window(window_style, *coordinates)
 
     pygame.quit()

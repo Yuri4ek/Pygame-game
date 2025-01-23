@@ -1,5 +1,6 @@
 from PIL import Image
 import os
+from profileWindowFiles.functions import get_path
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = ['..', 'assets', 'images', 'character', 'masses_progress']
@@ -12,7 +13,8 @@ with open(coords_fullname, mode="r") as coords_file:
     coords = [coord.split(";") for coord in coords_file.read().split("\n")]
 
 # берет уровни прогресса персонажа
-with open("progress.txt", mode="r") as progress_file:
+with open(get_path(["..", "profileWindowFiles", "progress.txt"]),
+          mode="r") as progress_file:
     specifications = [specification.split(":")[1]
                       for specification in progress_file.read().split("\n")]
 
@@ -64,4 +66,5 @@ if specifications[2] != 1:
     except Exception:
         pass
 
-character_im.save("total_character.png")
+character_im.save(get_path(["..", "profileWindowFiles",
+                            "total_character.png"]))

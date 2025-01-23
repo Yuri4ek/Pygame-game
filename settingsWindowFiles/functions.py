@@ -29,6 +29,12 @@ def get_coordinates():
     return (size, first_backgroud_coordinates, second_backgroud_coordinates)
 
 
+def check_touch(mouse_coordinates, object_coordinates):
+    x1, y1, x2, y2 = object_coordinates
+    return x1 <= mouse_coordinates[0] <= x2 and \
+        y1 <= mouse_coordinates[1] <= y2
+
+
 def run_window(window_style, size, first_backgroud_coordinates,
                second_backgroud_coordinates):
     window = pygame.display.set_mode(size, pygame.RESIZABLE)
@@ -46,3 +52,21 @@ def run_window(window_style, size, first_backgroud_coordinates,
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.MOUSEBUTTONUP:
+                mouse_coordinates = event.pos
+
+                if check_touch(mouse_coordinates, first_backgroud_coordinates):
+                    window_style = "forest"
+                elif check_touch(mouse_coordinates,
+                                 second_backgroud_coordinates):
+                    window_style = "gym"
+
+                # изменение фона
+                background_path = ["..", "assets", "images", "backgrounds",
+                                   f"settings_{window_style}.png"]
+                background_image = pygame.image.load(
+                    get_path(background_path))
+                window.blit(background_image, (0, 0))
+                pygame.display.flip()
+
+    return window_style

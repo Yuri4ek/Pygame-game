@@ -71,7 +71,8 @@ def display_character(all_sprites, character_view_coordinates):
     sprite = pygame.sprite.Sprite()
 
     # обновление картинки персонажа
-    subprocess.run(["python", "make total character.py"])
+    subprocess.run(["python", get_path(["..", "profileWindowFiles",
+                                        "make total character.py"])])
 
     # загрузка картинки персонажа
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -131,6 +132,7 @@ def run_window(window_style, size, character_view_coordinates,
                        f"profile_{window_style}.png"]
     background_image = pygame.image.load(get_path(background_path))
     window.blit(background_image, (0, 0))
+    pygame.display.flip()
 
     # вывод персонажа
     all_sprites = pygame.sprite.Group()

@@ -54,6 +54,7 @@ def run_window(window_style, size, simulator_hands_coordinates,
                        f"game_{window_style}.png"]
     background_image = pygame.image.load(get_path(background_path))
     window.blit(background_image, (0, 0))
+    pygame.display.flip()
 
     # добавление персонажа
     all_sprites = pygame.sprite.Group()
