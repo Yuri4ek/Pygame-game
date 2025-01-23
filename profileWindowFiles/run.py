@@ -1,0 +1,15 @@
+from functions import *
+
+window_style = "gym"
+
+# координаты окна и его объектов
+coordinates = get_coordinates()
+
+if __name__ == '__main__':
+    # инициализация окна
+    pygame.init()
+    pygame.display.set_caption("Pump It Up💪💪💪")
+
+    run_window(window_style, *coordinates)
+
+    pygame.quit()

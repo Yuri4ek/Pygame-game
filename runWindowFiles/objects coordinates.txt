@@ -1,0 +1,4 @@
+running_equipment_window_size;0,0;900,900
+left_block;0,550,280,900
+down_block;0,835,900,900
+text_coord;50,300,160,450

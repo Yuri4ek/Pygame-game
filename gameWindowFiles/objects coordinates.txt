@@ -1,0 +1,5 @@
+game_window_size;0,0;800,500
+simulator_hands;50,50,250,250
+simulator_legs;300,50,500,250
+simulator_press;550,50,750,250
+character_spawn;275,325,425,475
