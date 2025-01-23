@@ -1,6 +1,3 @@
 horizontal_bar_window;0,0;900,900
 text;350,10,590,130
 character;300,220,600,850
-upper_kernel;150,230,750,250
-left_kernel;150,220,170,900
-right_kernel;730,220,750,900

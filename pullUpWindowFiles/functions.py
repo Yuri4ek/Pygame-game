@@ -3,9 +3,8 @@ import os
 from pullUpWindowFiles.classes import PullingCharacter
 
 
-def get_path(name):
+def get_path(file_path):
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = ['..', 'pullUpWindowFiles', name]
     file_name = os.path.join(current_dir, *file_path)
 
     # если файл не существует, то выходим
@@ -20,7 +19,7 @@ def get_progress():
         Возвращает прогресс персонажа
     '''
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = ['..', 'characterWindowFiles', 'progress.txt']
+    file_path = ['..', 'profileWindowFiles', 'progress.txt']
     progress_file_name = os.path.join(current_dir, *file_path)
 
     # если файл не существует, то выходим
@@ -42,7 +41,7 @@ def write_progress(specifications,
         Записывает новые значения в progress.txt
     '''
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = ['..', 'characterWindowFiles', 'progress.txt']
+    file_path = ['..', 'profileWindowFiles', 'progress.txt']
     progress_file_name = os.path.join(current_dir, *file_path)
 
     # если файл не существует, то выходим
@@ -70,7 +69,8 @@ def write_progress(specifications,
 
 def get_coordinates():
     # взятие данных обьектов
-    with open(get_path("objects coordinates.txt"), mode="r") as file:
+    with open(get_path(["..", "pullUpWindowFiles", "objects coordinates.txt"]),
+              mode="r") as file:
         data = [l.split(";") for l in file.read().split("\n")]
 
     # размер окна
@@ -79,13 +79,8 @@ def get_coordinates():
     # координаты обьектов окна
     text_coordinates = list(map(int, data[1][1].split(",")))
     character_coordinates = list(map(int, data[2][1].split(",")))
-    upper_kernel_coordinates = list(map(int, data[3][1].split(",")))
-    left_kernel_coordinates = list(map(int, data[4][1].split(",")))
-    right_kernel_coordinates = list(map(int, data[5][1].split(",")))
 
-    return (size, text_coordinates, character_coordinates,
-            upper_kernel_coordinates, left_kernel_coordinates,
-            right_kernel_coordinates)
+    return (size, text_coordinates, character_coordinates)
 
 
 def text_update(window, text_coordinates, character_level, purpose, score):
@@ -104,11 +99,14 @@ def text_update(window, text_coordinates, character_level, purpose, score):
     window.blit(score_text, (x1, y1 + 10 * 2 + text_size * 2))
 
 
-def run_window(window_size, text_coordinates, character_coordinates):
+def run_window(window_style, window_size, text_coordinates,
+               character_coordinates):
     window = pygame.display.set_mode(window_size)
 
     # добавление фона
-    background_image = pygame.image.load(get_path('window.png'))
+    background_path = ["..", "assets", "images", "backgrounds",
+                       f"pullUp_{window_style}.png"]
+    background_image = pygame.image.load(get_path(background_path))
     window.blit(background_image, (0, 0))
 
     # добавление персонажа

@@ -2,14 +2,14 @@ from functions import *
 
 window_style = "gym"
 
-# взятие данных обьектов
+# координаты окна и его объектов
 coordinates = get_coordinates()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # инициализация окна
     pygame.init()
     pygame.display.set_caption("Pump It Up💪💪💪")
 
-    hands_flag, legs_flag, press_flag = run_window(window_style, *coordinates)
+    run_window(window_style, *coordinates)
 
     pygame.quit()

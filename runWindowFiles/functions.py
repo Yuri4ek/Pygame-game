@@ -3,9 +3,8 @@ import pygame
 from runWindowFiles.classes import RunningCharacter
 
 
-def get_path(name):
+def get_path(file_path):
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = ['..', 'runWindowFiles', name]
     file_name = os.path.join(current_dir, *file_path)
 
     # если файл не существует, то выходим
@@ -17,7 +16,7 @@ def get_path(name):
 
 def get_progress():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = ['..', 'characterWindowFiles', 'progress.txt']
+    file_path = ['..', 'profileWindowFiles', 'progress.txt']
     progress_file_name = os.path.join(current_dir, *file_path)
 
     # если файл не существует, то выходим
@@ -36,7 +35,7 @@ def get_progress():
 def write_progress(specifications,
                    arm_flag=False, press_flag=False, legs_flag=False):
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = ['..', 'characterWindowFiles', 'progress.txt']
+    file_path = ['..', 'profileWindowFiles', 'progress.txt']
     progress_file_name = os.path.join(current_dir, *file_path)
 
     # если файл не существует, то выходим
@@ -64,7 +63,8 @@ def write_progress(specifications,
 
 def get_coordinates():
     # взятие данных обьектов
-    with open(get_path("objects coordinates.txt"), mode="r") as file:
+    with open(get_path(["..", "runWindowFiles", "objects coordinates.txt"]),
+              mode="r") as file:
         data = [l.split(";") for l in file.read().split("\n")]
 
     # размер окна
@@ -78,6 +78,7 @@ def get_coordinates():
     return (size, left_block_coordinates, down_block_coordinates,
             text_coordinates)
 
+
 def get_total_coordinates():
     character_size = (300, 400)
 
@@ -88,6 +89,7 @@ def get_total_coordinates():
                                                        down_block_coordinates)
 
     return window_size, text_coordinates, character_spawn_coordinates
+
 
 def make_character_spawn(character_size,
                          left_block_coordinates, down_block_coordinates):
@@ -117,11 +119,14 @@ def text_update(window, text_coordinates, character_level, purpose, score):
     window.blit(score_text, (x1, y1 + 10 * 2 + text_size * 2))
 
 
-def run_window(window_size, text_coordinates, character_spawn_coordinates):
+def run_window(window_style, window_size, text_coordinates,
+               character_spawn_coordinates):
     window = pygame.display.set_mode(window_size)
 
     # добавление фона
-    background_image = pygame.image.load(get_path('window.png'))
+    background_path = ["..", "assets", "images", "backgrounds",
+                       f"run_{window_style}.png"]
+    background_image = pygame.image.load(get_path(background_path))
     window.blit(background_image, (0, 0))
 
     # добавление персонажа

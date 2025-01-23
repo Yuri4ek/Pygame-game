@@ -3,9 +3,8 @@ import os
 from gameWindowFiles.classes import MainCharacter
 
 
-def get_path(name):
+def get_path(file_path):
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = ['..', 'gameWindowFiles', name]
     file_name = os.path.join(current_dir, *file_path)
 
     # если файл не существует, то выходим
@@ -17,7 +16,8 @@ def get_path(name):
 
 def get_coordinates():
     # взятие данных обьектов
-    with open(get_path("objects coordinates.txt"), mode="r") as file:
+    with open(get_path(["..", "gameWindowFiles", "objects coordinates.txt"]),
+              mode="r") as file:
         data = [l.split(";") for l in file.read().split("\n")]
 
     # размер окна
@@ -39,7 +39,8 @@ def check_touch(character_coordinates, object_coordinates):
         y1 <= character_coordinates[1] <= y2
 
 
-def run_window(size, simulator_hands_coordinates, simulator_legs_coordinates,
+def run_window(window_style, size, simulator_hands_coordinates,
+               simulator_legs_coordinates,
                simulator_press_coordinates, character_spawn_coordinates):
     window = pygame.display.set_mode(size)
 
@@ -49,7 +50,9 @@ def run_window(size, simulator_hands_coordinates, simulator_legs_coordinates,
     press_flag = False
 
     # добавление фона
-    background_image = pygame.image.load(get_path('window.png'))
+    background_path = ["..", "assets", "images", "backgrounds",
+                       f"game_{window_style}.png"]
+    background_image = pygame.image.load(get_path(background_path))
     window.blit(background_image, (0, 0))
 
     # добавление персонажа
