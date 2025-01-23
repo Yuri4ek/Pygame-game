@@ -1,4 +1,3 @@
-import pygame
 from functions import *
 import mainWindowFiles.functions as mainWindow
 import gameWindowFiles.functions as gameWindow
@@ -15,8 +14,13 @@ window_style = "gym"
 if __name__ == "__main__":
     # инициализация pygame
     pygame.init()
+    PIU_icon = pygame.image.load(get_path(["assets", "images", "logo.png"]))
+    pygame.display.set_icon(PIU_icon)
     window = pygame.display.set_mode((900, 900))
     pygame.display.set_caption("Pump It Up💪💪💪")
+
+    # приветственное
+    start_screen(window)
 
     while True:
         # запуск начального меню
