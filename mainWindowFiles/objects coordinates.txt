@@ -1,3 +1,4 @@
-main_window_size;0,0;800,600
-start_game_btn;100,50,700,200
-settings_btn;100,250,700,400
+main_window_size;0,0;900,900
+start_game_btn;340,320,560,390
+settings_btn;300,420,600,490
+profile_btn;330,510,570,580

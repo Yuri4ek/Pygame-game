@@ -1,5 +1,7 @@
 from functions import *
 
+window_style = "gym"
+
 # взятие данных обьектов
 coordinates = get_total_coordinates()
 
@@ -8,6 +10,6 @@ if __name__ == '__main__':
     pygame.init()
     pygame.display.set_caption("Pump It Up💪💪💪")
 
-    run_window(*coordinates)
+    run_window(window_style, *coordinates)
 
     pygame.quit()

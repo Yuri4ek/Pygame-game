@@ -8,7 +8,7 @@ import pullUpWindowFiles.functions as pullUpWindow
 if __name__ == "__main__":
     # инициализация pygame
     pygame.init()
-    window = pygame.display.set_mode((600, 600))
+    window = pygame.display.set_mode((800, 800))
     pygame.display.set_caption("Pump It Up💪💪💪")
 
     # запуск начального меню
