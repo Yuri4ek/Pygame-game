@@ -1,10 +1,14 @@
 import pygame
+from functions import *
 import mainWindowFiles.functions as mainWindow
 import gameWindowFiles.functions as gameWindow
 import settingsWindowFiles.functions as settingsWindow
 import profileWindowFiles.functions as profileWindow
 import runWindowFiles.functions as runWindow
 import pullUpWindowFiles.functions as pullUpWindow
+
+path = ["profileWindowFiles", "progress.txt"]
+clear_progress(path)
 
 window_style = "gym"
 
