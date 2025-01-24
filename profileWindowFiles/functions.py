@@ -60,9 +60,34 @@ def level_calculating():
     level_specifications = [specification if specification > 1 else 0
                             for specification in specifications]
 
+    specifications[1] = (specifications[0] + specifications[2]) // 2
+
     total_level = 1 + sum(level_specifications)
 
     return total_level, specifications
+
+
+def write_progress():
+    '''
+        Записывает новые значения в progress.txt
+    '''
+    # берет уровни прогресса персонажа
+    with open(get_path(["..", "profileWindowFiles", "progress.txt"]),
+              mode="r") as progress_file:
+        specifications = [int(specification.split(":")[1])
+                          for specification in
+                          progress_file.read().split("\n")]
+
+    specifications[1] = (specifications[0] + specifications[2]) // 2
+
+    progress_text = f"arm:{specifications[0]}\n" \
+                    f"press:{specifications[1]}\n" \
+                    f"legs:{specifications[2]}"
+
+    # записывает прогресс
+    with open(get_path(["..", "profileWindowFiles", "progress.txt"]),
+              mode="w") as progress_file:
+        progress_file.write(progress_text)
 
 
 def display_character(all_sprites, character_view_coordinates):
@@ -133,6 +158,9 @@ def run_window(window_style, size, character_view_coordinates,
     background_image = pygame.image.load(get_path(background_path))
     window.blit(background_image, (0, 0))
     pygame.display.flip()
+
+    # обновление прогресса
+    write_progress()
 
     # вывод персонажа
     all_sprites = pygame.sprite.Group()

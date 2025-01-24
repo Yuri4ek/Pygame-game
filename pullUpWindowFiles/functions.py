@@ -127,7 +127,7 @@ def run_window(window_style, window_size, text_coordinates,
     # атрибуты игры для прокачки персонажа
     score = 0
     level_up_times = [10, 30, 1000]
-    i = int(get_progress()[2]) - 1
+    i = int(get_progress()[0]) - 1
     level_up_time = level_up_times[i]
     count = 1
     down_flag = False
@@ -139,7 +139,8 @@ def run_window(window_style, window_size, text_coordinates,
             if event.type == pygame.QUIT:
                 running = False
 
-            if event.type == pygame.MOUSEBUTTONUP and not down_flag:
+            if (event.type == pygame.MOUSEBUTTONUP or \
+                pygame.key.get_pressed()[pygame.K_SPACE]) and not down_flag:
                 count += 1
                 if count == 3:
                     score += 1
